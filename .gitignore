@@ -1,0 +1,36 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node
+node_modules/
+frontend/dist/
+
+# Generated data. Never commit real invoices, client documents or evaluation outputs.
+sample_data/synthetic/
+evaluation/results/
+*.sqlite
+*.db
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
+
+# Local test artifacts and generated files
+test-artifacts/
+.ruff_cache/
+.mypy_cache/
+.cache/

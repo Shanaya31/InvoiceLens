@@ -1,0 +1,37 @@
+# OPTIONAL Render blueprint for a public DEMO with synthetic documents only.
+#
+# This file has NOT been deployed or tested. Check it against Render's current docs before use
+# (https://render.com/docs/deploy-fastapi and https://render.com/docs/blueprint-spec).
+#
+# The demo backend runs in MOCK mode: every upload returns the same fake invoice, labelled as mock.
+# It is NOT local inference, and the app says so. Ollama on your laptop is never exposed by this.
+# Do not upload real invoices to a hosted demo. Hosting, logs and infrastructure are outside this
+# app's control, so deleting a record from memory is not a promise of permanent privacy.
+services:
+  - type: web
+    name: invoicelens-api
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
+      - key: APP_ENV
+        value: production
+      - key: EXTRACTION_MODE
+        value: mock
+      - key: FRONTEND_ORIGIN
+        sync: false # set to the static site URL after the first deploy
+
+  - type: web
+    name: invoicelens-web
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_BASE_URL
+        sync: false # set to the invoicelens-api URL, then redeploy

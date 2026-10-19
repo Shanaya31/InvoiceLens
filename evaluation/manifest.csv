@@ -1,0 +1,7 @@
+file,category,difficulty,notes
+synthetic/inv_clear_001.pdf,digital_invoice,clear,"Digital PDF, CGST+SGST"
+synthetic/inv_clear_002.png,digital_invoice,clear,"Clean PNG, IGST, leading zeros in invoice number"
+synthetic/receipt_clear_001.pdf,digital_receipt,clear,"Receipt: no GSTIN, no invoice number"
+synthetic/inv_scan_001.jpg,scanned_invoice,difficult,"Rotated, noisy, low-quality JPEG; has a discount"
+synthetic/receipt_difficult_001.jpg,difficult_receipt,difficult,"Blurry; date printed as 03/04/2026 so the correct answer is null"
+synthetic/inv_clear_003.png,digital_invoice,clear,"Unregistered vendor: no GSTIN, no tax"
